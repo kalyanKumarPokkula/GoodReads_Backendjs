@@ -9,7 +9,7 @@ export default class BookReviewRepository extends CrudRepository{
 
     bookReviews = async (data) => {
         try {
-            let books = await UserReview.find({dookId : data});
+            let books = await UserReview.find({bookId : data});
             return books;
         } catch (error) {
             Logger.error("Something went wrong in the userReview : bookReview");

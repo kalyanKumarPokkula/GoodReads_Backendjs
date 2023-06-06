@@ -24,7 +24,7 @@ const userReviewSchema = new mongoose.Schema({
         }
     ],
 
-    comment : [
+    comments : [
         {
             type : mongoose.Schema.Types.ObjectId,
             ref : "Comment"

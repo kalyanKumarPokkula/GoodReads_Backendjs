@@ -6,7 +6,7 @@ const bookReviewService = new BookReviewService();
 
 const create = async (req ,res) => {
     try {
-        let body = {...req.body , bookId : req.params.id}
+        let body = {...req.body , bookId : req.params.bookId}
         let data = await bookReviewService.create(body);
         return res
                 .status(StatusCodes.CREATED)
@@ -61,7 +61,7 @@ const bookReviews = async (req ,res) => {
 
 const update = async (req ,res) => {
     try {
-        const bookId = req.params.id;
+        const bookId = req.params.bookId;
         const reviewId = req.params.reviewId;
         const updatedReview = req.body;
         let data = await bookReviewService.update(reviewId , updatedReview);

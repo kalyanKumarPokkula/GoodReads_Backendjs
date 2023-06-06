@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const likeSchema = new mongoose.Schema({
     reviewId : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'UserReview'
+        ref : 'BookReview'
     },
     userId : {
         type : mongoose.Schema.Types.ObjectId,
@@ -12,6 +12,6 @@ const likeSchema = new mongoose.Schema({
 } , {timestamps : true});
 
 
-const LikeReview = mongoose.model('LikeReview' , likeSchema);
+const LikeOnReview = mongoose.model('LikeReview' , likeSchema);
 
-export default LikeReview;
+export default LikeOnReview;

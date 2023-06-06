@@ -1,11 +1,13 @@
 import express from "express";
 
-import {UserController , BookContoller , AuthorController ,GenreController, BookReviewController} from "../../controllers/index.js";
+import {UserController , BookContoller , AuthorController ,GenreController, BookReviewController , CommentOnReviewController} from "../../controllers/index.js";
 import { authenticate , signIn_middleware , signUp_Middleware } from "../../middlewares/authenticate.js";
+import commentOnReviewController from "../../controllers/commentOnReview-controller.js";
 
 
 const router = express.Router();
 
+// user signin and signup
 router.post('/signup' ,signUp_Middleware, UserController.signup);
 router.get('/isauthenticate' , authenticate , (req ,res) => {
     return res.status(200).json({
@@ -15,22 +17,31 @@ router.get('/isauthenticate' , authenticate , (req ,res) => {
 })
 router.post('/signin',signIn_middleware, UserController.signin);
 
-
+// this routes are creating author and fetching author
 router.post('/authors' ,AuthorController.create);
 router.get('/authors' , AuthorController.getAll);
 
+// this routes are creating genres and fetching genre
 router.post('/genres' , GenreController.create );
 router.get('/genres' , GenreController.getAll);
 router.get('/genres:name' , GenreController.getByName);
 
+// this routes are creating books and fetching books
 router.post('/books' , BookContoller.create);
 router.get('/books:id' , BookContoller.get);
 router.get('/books' , BookContoller.getAll);
 
-router.post ('/books/:id/reviews' , BookReviewController.create);
-router.get('/books/:id/reviews' , BookReviewController.bookReviews);
-router.put('/books/:id/reviews/:reviewId' , BookReviewController.update);
-router.delete('/books/:id/reviews/:reviewId' , BookReviewController.destory)
+//this routes are creating review on books etc
+router.post ('/books/:bookId/reviews' , BookReviewController.create);
+router.get('/books/:bookId/reviews' , BookReviewController.bookReviews);
+router.put('/books/:bookId/reviews/:reviewId' , BookReviewController.update);
+router.delete('/books/:bookId/reviews/:reviewId' , BookReviewController.destory);
+
+//this routes are creating comments on reivews
+router.post('/books/:bookId/reviews/:reviewId/comments' , CommentOnReviewController.create);
+router.get('/books/:bookId/reviews/:reviewId/comments' , CommentOnReviewController.getAllComments);
+router.put('/books/:bookId/reviews/:reviewId/comments/:commentId' , commentOnReviewController.updateComment);
+router.delete('books/:bookId/reviews/:reviewId/comments/:commentId', CommentOnReviewController.destoryCommentOnReview);
 
 
 export default router;

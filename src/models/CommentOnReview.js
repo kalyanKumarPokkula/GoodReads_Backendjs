@@ -9,7 +9,7 @@ const commentReviewSchema = new mongoose.Schema({
 
     reviewId : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "UserReview",
+        ref : "BookReview",
         required : [true , "can't be blank"]
     },
 
@@ -24,6 +24,6 @@ const commentReviewSchema = new mongoose.Schema({
 
 }, {timestamps : true});
 
-const CommentReview = mongoose.model("CommentReview" , commentReviewSchema);
+const CommentOnReview = mongoose.model("CommentReview" , commentReviewSchema);
 
-export default CommentReview;
+export default CommentOnReview;
