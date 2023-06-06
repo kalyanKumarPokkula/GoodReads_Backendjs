@@ -4,6 +4,7 @@ import AuthorController from "./author-controller.js";
 import BookReviewController from "./bookReview-controller.js";
 import GenreController from "./genre-controller.js";
 import CommentOnReviewController from "./commentOnReview-controller.js";
+import LikeOnReviewController from "./likeOnReview-controller.js";
 
 
 export {
@@ -12,5 +13,6 @@ export {
     AuthorController,
     BookReviewController,
     GenreController,
-    CommentOnReviewController
+    CommentOnReviewController,
+    LikeOnReviewController
 }

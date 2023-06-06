@@ -29,13 +29,13 @@ const bookSchema = new mongoose.Schema({
     },
 
     publishDate : {
-        type : String
+        type : String,
+        required : true
     },
 
     rating :{
         type : Number,
         default : 0,
-        required :true,
         max : 10
     }
 

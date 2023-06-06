@@ -2,7 +2,7 @@ import passport from "passport";
 import { StatusCodes } from "http-status-codes";
 import { InternalServerErrorResponse } from "../utils/comman/response-objects.js";
 
-export const authenticate =  async (req ,res, next) => {
+const authenticate =  async (req ,res, next) => {
      passport.authenticate('jwt' , (err , user ,data) => {
         if(err) next();
 
@@ -18,7 +18,7 @@ export const authenticate =  async (req ,res, next) => {
      })(req ,res ,next)
 }
 
-export const signUp_Middleware = async (req ,res ,next) => {
+const signUp_Middleware = async (req ,res ,next) => {
     if(!req.body.email){
         return res
                 .status(StatusCodes.BAD_REQUEST)
@@ -46,7 +46,7 @@ export const signUp_Middleware = async (req ,res ,next) => {
     next();
 }
 
-export const signIn_middleware = async (req , res , next) => {
+const signIn_middleware = async (req , res , next) => {
     if(!req.body.email){
         return res
                 .status(StatusCodes.BAD_REQUEST)
@@ -64,4 +64,10 @@ export const signIn_middleware = async (req , res , next) => {
     }
 
     next();
+}
+
+export default {
+    signIn_middleware,
+    signUp_Middleware,
+    authenticate
 }
